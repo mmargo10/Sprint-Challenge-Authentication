@@ -2,7 +2,7 @@ const axios = require('axios');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const db = require('./database/dbConfig.js');
+const db = require('../database/dbConfig.js');
 
 const { authenticate } = require('./middlewares');
 
@@ -28,7 +28,7 @@ function register(req, res) {
     .then(user => {
       const token = generateToken(user);
       res.send(token);
-      res.status(201).json(user);
+      res.status(201).json(token);
     });
   })
   .catch(function(error) {
