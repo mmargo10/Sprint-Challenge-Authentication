@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 
 const db = require('../database/dbConfig.js');
 
-const { authenticate } = require('./middlewares');
+const { authenticate, generateToken } = require('./middlewares');
 
 module.exports = server => {
   server.post('/api/register', register);
@@ -36,17 +36,7 @@ function register(req, res) {
   });
 };
 
-function generateToken(user) {
-  const payload = {
-    username: user.username,
-  };
 
-  const options = {
-    expiresIn: '1h',
-    jwtid: '147963',
-  };
-  return jwt.sign(payload, secret, options);
-}
 
 function login(req, res) {
   // implement user login
